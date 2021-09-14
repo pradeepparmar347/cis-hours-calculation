@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { Paper } from "@material-ui/core";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
   const [inputString, setInputString] = useState("");
-  const [totalHours, setTotalHours] = useState(0);
-  const [totalMinutes, setTotalMinutes] = useState(0);
   const [totalDaysTillNow, setTotalDaysTillNow] = useState();
   const [laggingHours, setLaggingHours] = useState(0);
   const [laggingMinutes, setLaggingMinutes] = useState(0);
 
   const calculateHandler = () => {
+    if (!inputString || !totalDaysTillNow) {
+      alert("Provide all inputs");
+      return;
+    }
     let arr = inputString.replaceAll(" ", "").replaceAll("\t", "").split("min");
     let hours = 0;
     let minutes = 0;
@@ -29,53 +32,57 @@ function App() {
     hoursLagging = hours - totalExpectedHours + 1;
     minutesLagging = 60 - minutes;
     // }
-    setTotalHours(hours);
-    setTotalMinutes(minutes);
     setLaggingHours(hoursLagging);
     setLaggingMinutes(minutesLagging);
   };
 
   return (
-    <>
-      <h1>Hello World.</h1>
-      <div className="my-form">
-        <div className="my-form-group">
-          <label>Paste here</label>
-          <textarea
-            type="text"
-            name="inputString"
-            value={inputString}
-            onChange={(e) => setInputString(e.target.value)}
-            rows="5"
-            cols="100"
-          />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Paper elevation={3} className="my-container">
+        <h1>Welcome to cis hours calculator...</h1>
+        <div className="my-form">
+          <div className="my-form-group">
+            <label className="my-input-label">Paste here</label>
+            <textarea
+              className="my-input"
+              type="text"
+              name="inputString"
+              value={inputString}
+              onChange={(e) => setInputString(e.target.value)}
+              rows="5"
+              width="80%"
+            />
+          </div>
+          <div className="my-form-group">
+            <label className="my-input-label">Total Working Days</label>
+            <input
+              className="my-input"
+              type="text"
+              name="totalDaysTillNow"
+              value={totalDaysTillNow}
+              onChange={(e) => setTotalDaysTillNow(e.target.value)}
+            />
+          </div>
+          <div className="my-form-actions">
+            <button className="my-submit-btn" onClick={calculateHandler}>
+              Calculate
+            </button>
+          </div>
         </div>
-        <div className="my-form-group">
-          <label>Total Days</label>
-          <input
-            type="text"
-            name="totalDaysTillNow"
-            value={totalDaysTillNow}
-            onChange={(e) => setTotalDaysTillNow(e.target.value)}
-          />
+        <div>
+          <p>
+            Lagging/Ahead By: {laggingHours} Hrs : {laggingMinutes} mins
+          </p>
         </div>
-        <div className="my-form-actions">
-          <button className="my-submit-btn" onClick={calculateHandler}>
-            Calculate
-          </button>
-        </div>
-      </div>
-      <div>
-        <h3>Total till now:</h3>
-        <p>Total Hours: {totalHours}</p>
-        <p>Total Minutes: {totalMinutes}</p>
-      </div>
-      <div>
-        <p>
-          Lagging/Ahead By: {laggingHours} Hrs : {laggingMinutes} mins
-        </p>
-      </div>
-    </>
+      </Paper>
+    </div>
   );
 }
 

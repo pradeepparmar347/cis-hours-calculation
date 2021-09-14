@@ -1,0 +1,35 @@
+.my-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.my-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.my-form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  width: 100%;
+}
+
+.my-input-label {
+  flex: 3;
+}
+
+.my-input {
+  flex: 8;
+}
+
+.my-form-actions {
+  margin: 10px;
+}
