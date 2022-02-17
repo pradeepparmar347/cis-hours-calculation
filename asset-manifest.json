@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/cis-hours-calculation/static/css/main.b65a310b.chunk.css",
+    "main.js": "/cis-hours-calculation/static/js/main.20bf9495.chunk.js",
+    "main.js.map": "/cis-hours-calculation/static/js/main.20bf9495.chunk.js.map",
+    "runtime-main.js": "/cis-hours-calculation/static/js/runtime-main.ab7fbb33.js",
+    "runtime-main.js.map": "/cis-hours-calculation/static/js/runtime-main.ab7fbb33.js.map",
+    "static/js/2.ce563e42.chunk.js": "/cis-hours-calculation/static/js/2.ce563e42.chunk.js",
+    "static/js/2.ce563e42.chunk.js.map": "/cis-hours-calculation/static/js/2.ce563e42.chunk.js.map",
+    "static/js/3.b7aac38b.chunk.js": "/cis-hours-calculation/static/js/3.b7aac38b.chunk.js",
+    "static/js/3.b7aac38b.chunk.js.map": "/cis-hours-calculation/static/js/3.b7aac38b.chunk.js.map",
+    "index.html": "/cis-hours-calculation/index.html",
+    "static/css/main.b65a310b.chunk.css.map": "/cis-hours-calculation/static/css/main.b65a310b.chunk.css.map",
+    "static/js/2.ce563e42.chunk.js.LICENSE.txt": "/cis-hours-calculation/static/js/2.ce563e42.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ab7fbb33.js",
+    "static/js/2.ce563e42.chunk.js",
+    "static/css/main.b65a310b.chunk.css",
+    "static/js/main.20bf9495.chunk.js"
+  ]
+}
