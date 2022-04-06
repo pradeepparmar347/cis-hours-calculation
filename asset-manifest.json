@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cis-hours-calculation/static/css/main.6ceb1346.chunk.css",
-    "main.js": "/cis-hours-calculation/static/js/main.908ddcf4.chunk.js",
-    "main.js.map": "/cis-hours-calculation/static/js/main.908ddcf4.chunk.js.map",
+    "main.js": "/cis-hours-calculation/static/js/main.54c16c9b.chunk.js",
+    "main.js.map": "/cis-hours-calculation/static/js/main.54c16c9b.chunk.js.map",
     "runtime-main.js": "/cis-hours-calculation/static/js/runtime-main.70473815.js",
     "runtime-main.js.map": "/cis-hours-calculation/static/js/runtime-main.70473815.js.map",
     "static/js/2.f24f71db.chunk.js": "/cis-hours-calculation/static/js/2.f24f71db.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.70473815.js",
     "static/js/2.f24f71db.chunk.js",
     "static/css/main.6ceb1346.chunk.css",
-    "static/js/main.908ddcf4.chunk.js"
+    "static/js/main.54c16c9b.chunk.js"
   ]
 }
