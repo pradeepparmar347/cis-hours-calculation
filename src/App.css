@@ -33,3 +33,11 @@
 .my-form-actions {
   margin: 10px;
 }
+
+.ahead {
+  color: green;
+}
+
+.lagging {
+  color: red;
+}

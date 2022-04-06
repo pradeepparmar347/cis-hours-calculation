@@ -1,12 +1,31 @@
 import { Paper } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Confetti from "react-confetti";
 import "./App.css";
 
 function App() {
   const [inputString, setInputString] = useState("");
   const [totalDaysTillNow, setTotalDaysTillNow] = useState();
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
   const [laggingHours, setLaggingHours] = useState(0);
   const [laggingMinutes, setLaggingMinutes] = useState(0);
+  const [isAhead, setIsAhead] = useState(true);
+  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
+
+  const updateDimensions = () => {
+    setHeight(window.innerHeight);
+    setWidth(window.innerWidth);
+  };
 
   const calculateHandler = () => {
     if (!inputString || !totalDaysTillNow) {
@@ -27,62 +46,80 @@ function App() {
 
     hours += Math.floor(minutes / 60);
     minutes = minutes % 60;
-    let totalExpectedHours = totalDaysTillNow * 9;
-    // if(hours > -1) {
-    hoursLagging = hours - totalExpectedHours + 1;
-    minutesLagging = 60 - minutes;
-    // }
+
+    setHours(hours);
+    setMinutes(minutes);
+    let totalExpectedHours = totalDaysTillNow * 8;
+    if (hours >= totalExpectedHours) {
+      hoursLagging = hours - totalExpectedHours;
+      minutesLagging = minutes;
+      setIsAhead(true);
+    } else {
+      hoursLagging = totalExpectedHours - hours - 1;
+      minutesLagging = 60 - minutes;
+      setIsAhead(false);
+    }
+
     setLaggingHours(hoursLagging);
     setLaggingMinutes(minutesLagging);
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Paper elevation={3} className="my-container">
-        <h1>Welcome to cis hours calculator...</h1>
-        <div className="my-form">
-          <div className="my-form-group">
-            <label className="my-input-label">Paste here</label>
-            <textarea
-              className="my-input"
-              type="text"
-              name="inputString"
-              value={inputString}
-              onChange={(e) => setInputString(e.target.value)}
-              rows="5"
-              width="80%"
-            />
+    <>
+      {isAhead ? <Confetti width={width} height={height} /> : null}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Paper elevation={3} className="my-container">
+          <h1>Welcome to cis hours calculator...</h1>
+          <div className="my-form">
+            <div className="my-form-group">
+              <label className="my-input-label">Paste here</label>
+              <textarea
+                className="my-input"
+                type="text"
+                name="inputString"
+                value={inputString}
+                onChange={(e) => setInputString(e.target.value)}
+                rows="5"
+                width="80%"
+              />
+            </div>
+            <div className="my-form-group">
+              <label className="my-input-label">Total Working Days</label>
+              <input
+                className="my-input"
+                type="text"
+                name="totalDaysTillNow"
+                value={totalDaysTillNow}
+                onChange={(e) => setTotalDaysTillNow(e.target.value)}
+              />
+            </div>
+            <div className="my-form-actions">
+              <button className="my-submit-btn" onClick={calculateHandler}>
+                Calculate
+              </button>
+            </div>
           </div>
-          <div className="my-form-group">
-            <label className="my-input-label">Total Working Days</label>
-            <input
-              className="my-input"
-              type="text"
-              name="totalDaysTillNow"
-              value={totalDaysTillNow}
-              onChange={(e) => setTotalDaysTillNow(e.target.value)}
-            />
+          <div>
+            <p>
+              Total hours till yesterday: {hours} Hrs : {minutes} mins
+            </p>
+            <p>
+              Lagging/Ahead By:{" "}
+              <span className={isAhead ? "ahead" : "lagging"}>
+                {laggingHours} Hrs : {laggingMinutes} mins
+              </span>
+            </p>
           </div>
-          <div className="my-form-actions">
-            <button className="my-submit-btn" onClick={calculateHandler}>
-              Calculate
-            </button>
-          </div>
-        </div>
-        <div>
-          <p>
-            Lagging/Ahead By: {laggingHours} Hrs : {laggingMinutes} mins
-          </p>
-        </div>
-      </Paper>
-    </div>
+        </Paper>
+      </div>
+    </>
   );
 }
 
