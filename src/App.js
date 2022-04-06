@@ -66,7 +66,9 @@ function App() {
 
   return (
     <>
-      {isAhead ? <Confetti width={width} height={height} /> : null}
+      {isAhead && totalDaysTillNow ? (
+        <Confetti width={width} height={height} />
+      ) : null}
       <div
         style={{
           display: "flex",
